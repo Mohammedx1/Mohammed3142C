@@ -2,11 +2,12 @@
 #include <string>
 #include <vector>
 #include <deque>
+
 #include <math.h>
 
 using namespace std;
 
-class Calculator 
+class Calculator  
 {
     public:
         double oper1,oper2;
@@ -14,8 +15,7 @@ class Calculator
 
         Calculator(double a, char b, double c) : oper1(a),op(b),oper2(c){};
         Calculator() : oper1(0),op(0),oper2(0){};
-        void initialize(double a, char b, double c) {
-          oper1 = a; op = b; oper2 = c; return;}
+        void initialize(double a, char b, double c) {oper1 = a; op = b; oper2 = c; return;}
         double solve()
         {
             switch(op)
@@ -34,7 +34,7 @@ string expression;
 deque<double> numbers;
 deque<char> operators;
 
-void addsub() //Does adding and subtracting.
+void additionsub() //Does adding and subtracting.
 {
         Calculator calc;
         double temp = numbers.at(0);
@@ -60,7 +60,7 @@ void addsub() //Does adding and subtracting.
     }
 }
 
-void multidiv() //Does multiplication and division.
+void multiplydiv() 
 {
         Calculator calc;
         double temp;
@@ -89,10 +89,10 @@ void multidiv() //Does multiplication and division.
             --i;
         }
     }
-    addsub();
+    additionsub();
 }
 
-void calculate() //Does powers and roots.
+void calculate() 
 {
         Calculator calc;
         double temp;
@@ -121,10 +121,10 @@ void calculate() //Does powers and roots.
             --i;
         }
     }
-    multidiv();
+    multiplydiv();
 }
 
-void express()
+void user()
 {
     cout << "'+' to add\n'-' to subtract\n'*' to multiply\n'/' to divide\n'^' for powers\n'r' for roots\n\n";
     cout << "Enter your expression:\n";
@@ -132,19 +132,19 @@ void express()
     return;
 }
 
-void extract() //Turns an expression into a list of numbers and operators.
+void convert()
 {
-    vector<int> numbers;
+    vector<int> nums;
     unsigned int i,k; int temp=0;
 
     for (i=0; i<=expression.size(); i++)
     {
-        if (expression[i]>='0' && expression[i] <='9') numbers.push_back(expression[i]-'0');
+        if (expression[i]>='0' && expression[i] <='9') nums.push_back(expression[i]-'0');
         else {
                 operators.push_back(expression[i]);
-                for (k=0; k<numbers.size(); k++) temp+=numbers.at(k)*pow(10,(numbers.size()-1-k));
+                for (k=0; k<nums.size(); k++) temp+=nums.at(k)*pow(10,(nums.size()-1-k));
                 numbers.push_back(temp);
-                numbers.clear();
+                nums.clear();
                 temp=0;
              }
     }
@@ -154,8 +154,8 @@ void extract() //Turns an expression into a list of numbers and operators.
 
 int main ()
 {
-    express();
-    extract();
+    user();
+    convert();
     calculate();
 
     cout << "Final answer: " << numbers.at(0) << endl << endl;
