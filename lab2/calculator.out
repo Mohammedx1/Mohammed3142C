@@ -1,1 +1,22 @@
+'+' to add
+'-' to subtract
+'*' to multiply
+'/' to divide
+'^' for powers
+'r' for roots
 
+Enter your expression:
+5*5
+Final answer: 25
+
+
+'+' to add
+'-' to subtract
+'*' to multiply
+'/' to divide
+'^' for powers
+'r' for roots
+
+Enter your expression:
+7+4/6-8*12/4+100
+Final answer: 83.6667
