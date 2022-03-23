@@ -1,1 +1,17 @@
+OBJS	= calculator.o
+SOURCE	= calculator.cpp
+HEADER	= 
+OUT	= calculator.out
+CC	 = g++
+FLAGS	 = -g -c -Wall
+LFLAGS	 = 
 
+all: $(OBJS)
+	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+
+calculator.o: calculator.cpp
+	$(CC) $(FLAGS) calculator.cpp 
+
+
+clean:
+	rm -f $(OBJS) $(OUT)
