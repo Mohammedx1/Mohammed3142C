@@ -1,1 +1,5 @@
-Calculator 
+A calculator that is able to do +,-,*,/ and SqR
+
+With the help of https://www.udemy.com/course/beginning-c-plus-plus-programming/ and https://www.geeksforgeeks.org/calculator-using-classes-in-cpp/
+
+I was able to make a calculator that is able to take in an expression and evaluate it using PEMDAS. 
