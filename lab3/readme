@@ -6,4 +6,15 @@ This program reports 3 main things.
 
 3. Fall vs Spring pass rate for each course (1115, 3115, 3130)
 
+Fall and spring terms are entire based on my opinion as it wasnt clearly stated which term_id was fall & Spring.
+
+Articulation: 
+Each term Id was assigned to a certain catagory, either Fall or spring. 
+From there each Instructor in 2 of the catagory was then evaluated to find the passing rate. 
+After finding the Instrctor passing rate, the course passing rate for 1115,3115,3130 was evaluated for each fall and spring.
+Number of withdraws was then found in each catagory and added up the end to give an overall WD per term, per instructor and per course.
+
+
+
+
 
