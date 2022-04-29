@@ -1,1 +1,58 @@
+#include "../headers/OutputManager.h"
+#include "../headers/TypedPassRate.h"
+#include "../headers/UserControl.h"
 
+using namespace std;
+
+void gradeRatesByCategories(map<vector<string>, vector<string>> &courseGrades) {
+    TypedPassRate instructorPassRate;
+    TypedPassRate coursePassRate;
+    TypedPassRate termPassRate;
+
+    CourseReporter report;
+
+    bool userWantsAReport = true;
+
+    while (userWantsAReport) {
+        report.falsifyOptions();
+        printf("\n\n-----Lab3-----\n");
+        printf("---Brooklyn College---\n");
+        printf("Current Courses: CISC. 1115, CISC. 3115, CISC. 3130\n\n");
+
+        printf("The following output are available:\n\n"
+               "Pass Rates Instructor\n" "Pass Rates By Course Number"  "Pass Rates By Term\n\n");
+        string userInput;
+        getline(cin, userInput);
+        processUserInput(report, userInput);
+
+
+        if (report.reportChosen()) {
+            printf("\nType in the name of the output file you would like to generate\n"
+                   "Output File Name: ");
+            string outputFileName;
+            getline(cin, outputFileName);
+            cout << endl;
+
+            // iterate through all sections (i.e. classes)
+            for(auto kv : courseGrades) {
+                auto& key = kv.first;
+                auto& grades = kv.second;
+
+                if (report.reportRatesByInstructor)
+                    instructorPassRate.processClass(key, grades, 1);
+                if (report.reportRatesByCourse)
+                    coursePassRate.processClass(key, grades, 0);
+                if (report.reportRatesByCourseAndSemester)
+                    termPassRate.processClassByTwoTypes(key, grades, 0, 2); // this will give grades per term
+            }
+
+            TypedPassRate seasonPassRate;
+            if (report.reportRatesByCourseAndSemester)
+                seasonPassRate.passRateMap = termPassRate.termsToSeason();
+
+            FILE *pFile = createOutputFile("./output/", outputFileName);
+            if (report.reportRatesByInstructor)
+                instructorPassRate.printRates({"Instructor ID"}, pFile);
+            if (report.reportRatesByCourse)
+                coursePassRate.printRates({"Course"}, pFile);
+}
